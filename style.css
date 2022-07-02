@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+body {
+    display: flex;
+    margin: 0;
+    align-content: center;
+    justify-content: center;
+    background-color: rgb(192, 192, 192);
+}
+.header {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    font-family: 'Indie Flower', cursive;
+    font-size: 48px;
+    color: darkgray;
+    font-weight: 700;
+    background-color: rgb(65, 65, 65);
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 16px 0;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    min-width: 50%;
+    align-content: space-between;
+    justify-content: space-between;
+    align-items: center;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    min-width: 100%;
+    align-content: space-between;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+#scores, #playerScore, #compScore {
+    display: flex;
+    flex-direction: row;
+    max-width: 50%;
+    align-content: center;
+    justify-content: center;
+}
+.results {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    font-family: 'Indie Flower', cursive;
+    font-size: 32px;
+    width: 100%;
+    align-items: center;
+    padding: 10px 0;
+}
+.footer {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    font-family: 'Indie Flower', cursive;
+    font-size: 20px;
+    color: darkgrey;
+    background-color: rgb(65, 65, 65);
+    width: 100%;
+}
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    max-width: 75%;
+}
+
+.btn {
+    display: flex;
+    background-color: rgb(163, 162, 162);
+    border: solid black 2px;
+    width: 100px;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    font-family: 'Indie Flower', cursive;
+    font-size: 15px;
+}
+
+.btn:active {
+    transform: scale(1.1);
+    box-shadow: 2px 2px black;
+    background-color: rgb(133, 132, 132);
+}
+
+a {
+    text-decoration: none;
+    color: darkgray;
+    padding-left: .5em;
+}

@@ -1,5 +1,26 @@
-//tell user whats happening
-alert('Playing Rock, Paper, Scissors. Please choose on of the options when prompted.')
+
+const winlose = document.getElementById('winloss');
+const scoreMessage = document.getElementById('scoreMessage');
+const pScore = document.getElementById('playerScore');
+const cScore = document.getElementById('computerScore');
+const rock = document.getElementById('rock');
+const paper = document.getElementById('paper');
+const scissors = document.getElementById('scissors');
+
+let playerScore = 0;
+let compScore = 0;
+
+scoreMessage.textContent = 'Best of 5'
+pScore.textContent = `Player: ${playerScore}`
+cScore.textContent = `Computer: ${compScore}`
+winlose.textContent = `Make your Choice`
+
+// clicking button activates clicked function and determines players choice
+rock.addEventListener('click', () => clicked("ROCK"))
+paper.addEventListener('click', () => clicked("PAPER"))
+scissors.addEventListener('click', () => clicked("SCISSORS"))
+
+
 // Function to determine computers choice
 function computerPlay() {
     let i;
@@ -17,51 +38,46 @@ function computerPlay() {
         computerPlay();
     }
 }
-// set scores at 0
-let playerScore = 0;
-let compScore = 0;
+
+// function which allows clicked button to select players choice
+function clicked(playerChoice) {
+    const compChoice = computerPlay().toUpperCase();
+    playRound(playerChoice, compChoice)
+}
+
 
 let compChoice
 let playerChoice
-// function to determine who wins round
+// function to determine who wins round and limit game length to 5 rounds
 function playRound(playerChoice, compChoice) {
-    // set comp choice to upper case
-    compChoice = computerPlay().toUpperCase();
-    // prompt player with choice and make it uppercase
-    playerChoice = prompt('Make Choice: ').toUpperCase();
-    console.log(playerScore)
-    console.log(compScore)
     // determine who wins
-    if (playerChoice === compChoice) {
-        console.log(`Player choice: ${playerChoice}`);
-        console.log(`Comp choice: ${compChoice}`);
-        console.log('Same result, tie');
+    if (playerScore >= 5) {
+        scoreMessage.textContent = `Game Over`;
+        pScore.textContent = `Player: ${playerScore}`;
+        cScore.textContent = `Computer: ${compScore}`;
+        winlose.textContent = `Player Wins`;
+    } else if (compScore >= 5) {
+        scoreMessage.textContent = `Game Over`;
+        pScore.textContent = `Player: ${playerScore}`;
+        cScore.textContent = `Computer: ${compScore}`;
+        winlose.textContent = `Computer Wins`;
+    }    
+    else if (playerChoice === compChoice) {
+        scoreMessage.textContent = `${playerChoice} was chosen by both!`;
+        pScore.textContent = `Player: ${playerScore}`;
+        cScore.textContent = `Computer: ${compScore}`;
+        winlose.textContent = `Tie!`;
     } else if ((playerChoice === 'ROCK' && compChoice === 'PAPER') || (playerChoice === 'SCISSORS' && compChoice === 'ROCK') || (playerChoice === 'PAPER' && compChoice === 'SCISSORS')) {
-        console.log(`Player choice: ${playerChoice}`);
-        console.log(`Comp choice: ${compChoice}`);
-        console.log(`Computer wins! Computer chose ${compChoice}`);
         compScore += 1;
+        scoreMessage.textContent = `${compChoice} beats ${playerChoice}`;
+        pScore.textContent = `Player: ${playerScore}`;
+        cScore.textContent = `Computer: ${compScore}`;
+        winlose.textContent = `Computer Wins`;
     } else if ((playerChoice === 'ROCK' && compChoice === 'SCISSORS') || (playerChoice === 'SCISSORS' && compChoice === 'PAPER') || (playerChoice === 'PAPER' && compChoice === 'ROCK')) {
-        console.log(`Player choice: ${playerChoice}`);
-        console.log(`Comp choice: ${compChoice}`);
-        console.log(`You win!, Computer chose ${compChoice}`);
         playerScore += 1;
-    // in event of invalid option restart playRound function
-    } else {
-        alert('invalid choice');
-        playRound()
-    }
+        scoreMessage.textContent = `${playerChoice} beats ${compChoice}`;
+        pScore.textContent = `Player: ${playerScore}`;
+        cScore.textContent = `Computer: ${compScore}`;
+        winlose.textContent = `Player Wins`;
+    }     
 } 
-// plays the game
-function game(playRound) {
-    for (let i=0; i < 5; i++){
-        console.log(playRound(playerChoice, compChoice));
-    } if (playerScore > compScore) {
-        console.log(`Game over, You Win! Final Score: \n Player ${playerScore}, Computer ${compScore}`);
-    } else if (compScore > playerScore) {
-        console.log(`Game over, You Lose! Final score: \n Player ${playerScore}, Computer ${compScore}`);
-    } else {
-        console.log(`Game over, Tie! Final Score: \n Player ${playerScore}, Computer ${compScore}`);
-    }
-}
-game(playRound)
